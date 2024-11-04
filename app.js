@@ -1,5 +1,5 @@
 const express = require('express');
-// const cors = require('cors');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
@@ -10,10 +10,10 @@ connectDB();
 
 const app = express();
 
-// app.use(cors({
-//     origin: 'http://localhost:5174', // Thay thế bằng URL frontend của bạn
-//     credentials: true, // Nếu bạn cần gửi cookie trong yêu cầu
-// }));
+app.use(cors({
+    origin: 'https://ug-pos.netlify.app', // Thay thế bằng URL frontend của bạn
+    credentials: true, // Nếu bạn cần gửi cookie trong yêu cầu
+}));
 
 app.use(express.json());
 
