@@ -6,15 +6,16 @@ const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const tableRoutes = require('./routes/tableRoutes');
+
 dotenv.config();
 connectDB();
 
 const app = express();
 
+// Set up CORS to allow multiple origins
 app.use(cors({
-    origin: 'https://ug-pos.netlify.app',
-    // origin: 'http://localhost:5174',
-    credentials: true, // Nếu bạn cần gửi cookie trong yêu cầu
+    origin: ['https://ug-pos.netlify.app', 'http://localhost:5174'],
+    credentials: true, // Allow cookies if necessary
 }));
 
 app.use(express.json());
@@ -26,5 +27,3 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/tables', tableRoutes);
 
 module.exports = app;
-
-

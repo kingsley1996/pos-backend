@@ -29,6 +29,7 @@ exports.createProduct = async (req, res) => {
             folder: 'products'
         });
 
+
         // Tạo product mới
         const product = new Product({
             name,
@@ -107,7 +108,7 @@ exports.deleteProduct = async (req, res) => {
         await cloudinary.uploader.destroy(product.imageId);
 
         // Xóa product từ database
-        await product.remove();
+        await product.deleteOne();
 
         res.json({ message: 'Product deleted successfully' });
     } catch (error) {
