@@ -12,11 +12,22 @@ connectDB();
 
 const app = express();
 
-// Set up CORS to allow multiple origins
+// CORS setup with explicit origin and methods
+const allowedOrigins = ['https://ug-pos.netlify.app', 'http://localhost:5174'];
 app.use(cors({
-    origin: ['https://ug-pos.netlify.app', 'http://localhost:5174'],
-    credentials: true, // Allow cookies if necessary
+    origin: function (origin, callback) {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+app.options('*', cors()); // Preflight request handler
 
 app.use(express.json());
 
