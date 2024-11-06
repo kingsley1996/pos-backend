@@ -1,8 +1,17 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const tableSchema = new mongoose.Schema({
-    number: { type: Number, required: true, unique: true },
-    status: { type: String, enum: ['available', 'occupied'], default: 'available' }
+    tableNumber: {
+        type: String,
+        required: [true, "Table number is required"],
+        unique: true
+    },
+    status: {
+        type: String,
+        enum: ["Vacant", "Occupied"],
+        default: "Vacant"
+    }
+    // Các trường khác nếu có
 });
 
-module.exports = mongoose.model('Table', tableSchema);
+module.exports = mongoose.model("Table", tableSchema);
