@@ -1,10 +1,15 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
+    orderNumber: {
+        type: String,
+        required: true,
+        unique: true,  // Đảm bảo mỗi mã đơn hàng là duy nhất
+    },
     table: { type: mongoose.Schema.Types.ObjectId, ref: 'Table', required: true },
     products: [
         {
-            product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+            product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', include: 'name price' },
             quantity: { type: Number, required: true }
         }
     ],
