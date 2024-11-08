@@ -94,6 +94,7 @@ exports.createOrder = async (req, res) => {
     try {
         const { tableId, products, totalPrice } = req.body;
         const table = await Table.findById(tableId);
+        const isConnected = await printer.isPrinterConnected();
 
         if (!table || table.status !== 'Vacant') {
             return res.status(400).json({ message: "Table is not available" });
@@ -115,7 +116,7 @@ exports.createOrder = async (req, res) => {
         // Print receipt with populated data
         await printReceipt(populatedOrder);
 
-        res.status(201).json({ message: 'Order created and printed successfully' });
+        res.status(201).json({ message: 'Order created and printed successfully', isConnected });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
