@@ -115,7 +115,7 @@ exports.createOrder = async (req, res) => {
         // Print receipt with populated data
         await printReceipt(populatedOrder);
 
-        res.status(201).json(populatedOrder);
+        res.status(201).json({ message: 'Order created and printed successfully' });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
