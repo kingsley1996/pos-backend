@@ -27,7 +27,7 @@ const printer = new ThermalPrinter({
     type: PrinterTypes.EPSON,
     interface: 'tcp://192.168.1.240',
     options: {
-        timeout: 5000
+        timeout: 2500
     },
     characterSet: 'SLOVENIA',
 });
