@@ -9,6 +9,9 @@ const tableRoutes = require('./routes/tableRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const printRoutes = require('./routes/printRoutes');
 const reportRoutes = require('./routes/reportRoutes');
+const cargoRoutes = require('./routes/cargoRoutes');
+const cargoTypeRoutes = require('./routes/cargoTypeRoutes');
+const unitRoutes = require('./routes/unitRoutes');
 
 dotenv.config();
 connectDB();
@@ -42,5 +45,7 @@ app.use('/api/tables', tableRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/print', printRoutes);
 app.use('/api/report', reportRoutes);
-
+app.use('/api/cargo', cargoRoutes);
+app.use('/api/cargo-type', cargoTypeRoutes);
+app.use('/api/unit', unitRoutes);
 module.exports = app;
